@@ -1,16 +1,35 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import {useState} from 'react'
+import Flashcard from "./components/flashcard.jsx";
 
-function App() {
+function App(props) {
 
-  return (
-    <>
-        <h1>
+    let [flashcards, setFlashcards] = useState(props.flashcards);
 
-        </h1>
-    </>
-  )
+    console.log(flashcards.map(card => {
+        console.log(card)
+    }))
+
+    const flashCardsList = flashcards.map((card, index) => (
+        <Flashcard key={index} name={card.name} text={card.text} />
+    ));
+
+    return (
+        <>
+            <h1>
+                Welcome to your flashcards.
+            </h1>
+            <p>There are currently {flashcards.length} flashcards to study.</p>
+
+            <div className="fc_button-wrapper">
+                <button className="fc_add-btn">Add Flashcard</button>
+                <button className="fc_remove-btn">Remove Flashcard</button>
+            </div>
+
+            <div className="fc_list_wrapper">
+                {flashCardsList}
+            </div>
+        </>
+    )
 }
 
 export default App
