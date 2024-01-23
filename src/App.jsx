@@ -13,6 +13,18 @@ function App(props) {
         <Flashcard key={index} name={card.name} text={card.text} />
     ));
 
+    function addFlashcard () {
+        const newFlashcard = {
+            name: "What ever Name",
+            text: "What ever Text"
+        }
+        setFlashcards([...flashcards, newFlashcard])
+    }
+
+    function deleteFlashcard () {
+
+    }
+
     return (
         <>
             <h1>
@@ -21,8 +33,8 @@ function App(props) {
             <p>There are currently {flashcards.length} flashcards to study.</p>
 
             <div className="fc_button-wrapper">
-                <button className="fc_add-btn">Add Flashcard</button>
-                <button className="fc_remove-btn">Remove Flashcard</button>
+                <button className="fc_add-btn" onClick={addFlashcard}>Add Flashcard</button>
+                <button className="fc_remove-btn" onClick={deleteFlashcard}>Remove Flashcard</button>
             </div>
 
             <div className="fc_list_wrapper">
