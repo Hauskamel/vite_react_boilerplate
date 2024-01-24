@@ -1,5 +1,6 @@
 import {useState} from 'react'
 import Flashcard from "./components/flashcard.jsx";
+import {nanoid} from "nanoid";
 
 function App(props) {
 
@@ -7,14 +8,13 @@ function App(props) {
 
     function deleteFlashcard(id) {
         const remainingFlashcards = flashcards.filter(card => id !== card.id);
-        console.log(id)
         setFlashcards(remainingFlashcards);
     }
 
-    const flashCardsList = flashcards.map((card, index) => (
+    const flashCardsList = flashcards.map((card) => (
         <Flashcard
             id={card.id}
-            key={index}
+            key={card.id}
             name={card.name}
             text={card.text}
             deleteFlashcard={deleteFlashcard}
@@ -22,12 +22,13 @@ function App(props) {
     ));
 
     function addFlashcard() {
-        const newName = prompt("Type in flashcard name");
-        const newText = prompt("Type in flashcard text");
+        const newName = prompt("Type in flashcard name", "Test");
+        const newText = prompt("Type in flashcard text", "Test");
 
         const newFlashcard = {
             name: newName,
-            text: newText
+            text: newText,
+            id: `flashcard-${nanoid}`
         }
         setFlashcards([...flashcards, newFlashcard])
     }
@@ -51,4 +52,4 @@ function App(props) {
     )
 }
 
-export default App
+export default App;

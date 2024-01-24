@@ -1,7 +1,4 @@
-
-
 function Flashcard (props) {
-
 
     return (
         <>
