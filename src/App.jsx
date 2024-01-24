@@ -6,9 +6,13 @@ function App(props) {
 
     let [flashcards, setFlashcards] = useState(props.flashcards);
 
-    function deleteFlashcard(id) {
+    function deleteFlashcard (id) {
         const remainingFlashcards = flashcards.filter(card => id !== card.id);
         setFlashcards(remainingFlashcards);
+    }
+
+    function showAnswer (id) {
+
     }
 
     const flashCardsList = flashcards.map((card) => (
@@ -17,17 +21,21 @@ function App(props) {
             key={card.id}
             name={card.name}
             text={card.text}
+            answer={card.answer}
+            showAnswer={showAnswer}
             deleteFlashcard={deleteFlashcard}
         />
     ));
 
     function addFlashcard() {
-        const newName = prompt("Type in flashcard name", "Test");
-        const newText = prompt("Type in flashcard text", "Test");
+        const name = prompt("Type in flashcard name", "Name");
+        const text = prompt("Type in flashcard text", "Text");
+        const answer = prompt("Type in answer text", "Answer");
 
         const newFlashcard = {
-            name: newName,
-            text: newText,
+            name: name,
+            text: text,
+            answer: answer,
             id: `flashcard-${nanoid}`
         }
         setFlashcards([...flashcards, newFlashcard])
