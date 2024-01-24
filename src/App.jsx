@@ -12,7 +12,8 @@ function App(props) {
     }
 
     function showAnswer (id) {
-
+        const clickedCard = flashcards.filter(card => id === card.id)
+        console.log(Object.values(...clickedCard)[2])
     }
 
     const flashCardsList = flashcards.map((card) => (

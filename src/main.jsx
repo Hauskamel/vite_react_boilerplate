@@ -6,7 +6,8 @@ import './index.css';
 
 const DATA = [{
     name: "Flashcard Showcase",
-    text: "This is not a real flashcard"
+    text: "This is not a real flashcard",
+    answer: "Its my mother"
 }];
 
 
