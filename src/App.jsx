@@ -1,20 +1,30 @@
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import Flashcard from "./components/flashcard.jsx";
-import {nanoid} from "nanoid";
+import { nanoid } from "nanoid";
+
 
 function App(props) {
 
-    let [flashcards, setFlashcards] = useState(props.flashcards);
+    const questions = document.querySelectorAll(".question");
 
-    function deleteFlashcard (id) {
+    // const flashcards= [];
+    const [flashcards, setFlashcards] = useState(props.flashcards);
+
+    function deleteFlashcard(id) {
         const remainingFlashcards = flashcards.filter(card => id !== card.id);
         setFlashcards(remainingFlashcards);
     }
 
-    function showAnswer (id) {
-        const clickedCard = flashcards.filter(card => id === card.id)
-        console.log(Object.values(...clickedCard)[2])
+    function setAnswer(id) {
+
+        const clickedCard = flashcards.filter(card => id === card.id);
+        clickedCard.map(keyValuePair => {
+            return {...keyValuePair, showAnswer: true}
+        });
+
+        console.log(questions)
     }
+
 
     const flashCardsList = flashcards.map((card) => (
         <Flashcard
@@ -23,7 +33,7 @@ function App(props) {
             name={card.name}
             text={card.text}
             answer={card.answer}
-            showAnswer={showAnswer}
+            setAnswer={setAnswer}
             deleteFlashcard={deleteFlashcard}
         />
     ));
@@ -39,9 +49,8 @@ function App(props) {
             answer: answer,
             id: `flashcard-${nanoid}`
         }
-        setFlashcards([...flashcards, newFlashcard])
+        setFlashcards([...flashcards, newFlashcard]);
     }
-
 
     return (
         <>
@@ -60,5 +69,6 @@ function App(props) {
         </>
     )
 }
+
 
 export default App;

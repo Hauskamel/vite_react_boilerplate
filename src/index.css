@@ -79,5 +79,5 @@ button:focus-visible {
 }
 
 .hidden {
-  display: none;
+  display: block;
 }
