@@ -5,14 +5,9 @@ import './index.css';
 
 
 const DATA = [{
-    name: "Flashcard Name 1",
-    text: "What is the highest Mountain on Earth?"
-}, {
-    name: "Flashcard Name 2",
-    text: "What is the highest Mountain on Mars?"
-}, {
-    name: "Flashcard Name 3",
-    text: "What is the highest Mountain on Saturn?"
+    name: "Flashcard Showcase",
+    text: "This is not a real flashcard",
+    answer: "Its my mother"
 }];
 
 
