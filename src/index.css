@@ -77,7 +77,3 @@ button:focus-visible {
   height: 250px;
   margin-right: 25px;
 }
-
-.hidden {
-  display: block;
-}

@@ -1,5 +1,6 @@
 import {useEffect, useState} from 'react'
 import Flashcard from "./components/flashcard.jsx";
+import FlashcardBack from "./components/flashcard-back.jsx";
 import { nanoid } from "nanoid";
 
 
@@ -16,13 +17,10 @@ function App(props) {
     }
 
     function setAnswer(id) {
-
         const clickedCard = flashcards.filter(card => id === card.id);
         clickedCard.map(keyValuePair => {
             return {...keyValuePair, showAnswer: true}
         });
-
-        console.log(questions)
     }
 
 
@@ -33,6 +31,7 @@ function App(props) {
             name={card.name}
             text={card.text}
             answer={card.answer}
+            showAnswer={card.showAnswer}
             setAnswer={setAnswer}
             deleteFlashcard={deleteFlashcard}
         />
