@@ -4,13 +4,7 @@ import App from './App.jsx';
 import './index.css';
 
 
-const DATA = [{
-    name: "Flashcard Showcase",
-    text: "This is not a real flashcard",
-    answer: "Its my mother"
-}];
-
-
+const DATA = [];
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
