@@ -1,15 +1,31 @@
 import {useEffect, useState} from 'react'
 import Flashcard from "./components/flashcard.jsx";
-import FlashcardBack from "./components/flashcard-back.jsx";
-import { nanoid } from "nanoid";
+import {nanoid} from "nanoid";
+import Category from "./components/category.jsx";
 
 
 function App(props) {
 
-    const questions = document.querySelectorAll(".question");
-
-    // const flashcards= [];
+    const [categories, setCategories] = useState(props.categories)
     const [flashcards, setFlashcards] = useState(props.flashcards);
+
+    function addCategory() {
+        const categoryName = window.prompt("Type in Category Name");
+
+        const newCategory = {
+            categoryName: categoryName,
+            id: `category-${nanoid}`
+        }
+        setCategories([...categories, newCategory]);
+    }
+
+    const categoriesList = categories.map(category => (
+        <Category
+            id={category.id}
+            key={category.id}
+            name={category.categoryName}
+        />
+    ))
 
     function deleteFlashcard(id) {
         const remainingFlashcards = flashcards.filter(card => id !== card.id);
@@ -19,7 +35,7 @@ function App(props) {
     function setAnswer(id) {
         const clickedCard = flashcards.filter(card => id === card.id);
         clickedCard.map(keyValuePair => {
-            return {...keyValuePair, showAnswer: true}
+            return {...keyValuePair}
         });
     }
 
@@ -34,6 +50,7 @@ function App(props) {
             showAnswer={card.showAnswer}
             setAnswer={setAnswer}
             deleteFlashcard={deleteFlashcard}
+            categories={categoriesList}
         />
     ));
 
@@ -56,6 +73,14 @@ function App(props) {
             <h1>
                 Welcome to your flashcards.
             </h1>
+
+            <h2>Categories:</h2>
+            <button onClick={addCategory}>Add Category</button>
+
+            <ul>
+                {categoriesList}
+            </ul>
+
             <p>There are currently {flashcards.length} flashcards to study.</p>
 
             <div className="fc_button-wrapper">

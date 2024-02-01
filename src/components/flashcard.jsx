@@ -1,7 +1,7 @@
 import {useState} from "react";
+import Category from "./category.jsx";
 
 function Flashcard (props) {
-
     const [activeAnswer, setActiveAnswer] = useState(false);
 
     if (activeAnswer === false) {
@@ -10,6 +10,12 @@ function Flashcard (props) {
                 <div className="fc_wrapper question">
                     <h1 className="fc_name">{props.name}</h1>
                     <p className="fc_text">{props.text}</p>
+
+                    <select>
+                        {props.categories}
+                    </select>
+
+                    <br/>
 
                     <button
                         className="fc_show-answer_btn"
