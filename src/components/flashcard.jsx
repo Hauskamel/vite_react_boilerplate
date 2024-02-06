@@ -3,6 +3,7 @@ import Category from "./category.jsx";
 
 function Flashcard (props) {
     const [activeAnswer, setActiveAnswer] = useState(false);
+    const [newName, setNewName] = useState("");
 
     if (activeAnswer === false) {
         return (
@@ -30,6 +31,13 @@ function Flashcard (props) {
                         props.deleteFlashcard(props.id)
                     }}>Remove flashcard
                     </button>
+
+
+                   <button className="fc_edit" onClick={() => {
+                       props.editFlashcard(props.id, props.name, props.text, props.answer);
+                   }}>
+                       Edit Flashcard
+                   </button>
                 </div>
             </>
         )
