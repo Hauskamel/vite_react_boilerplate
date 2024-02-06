@@ -1,13 +1,14 @@
-import {useEffect, useState} from 'react'
+import {useState} from 'react'
 import Flashcard from "./components/flashcard.jsx";
 import {nanoid} from "nanoid";
 import Category from "./components/category.jsx";
+import {flushSync} from "react-dom";
 
 
 function App(props) {
-
     const [categories, setCategories] = useState(props.categories)
     const [flashcards, setFlashcards] = useState(props.flashcards);
+    const [newName, setNewName] = useState("New Name");
 
     function addCategory() {
         const categoryName = window.prompt("Type in Category Name");
@@ -33,9 +34,9 @@ function App(props) {
     }
 
     function setAnswer(id) {
-        const clickedCard = flashcards.filter(card => id === card.id);
-        clickedCard.map(keyValuePair => {
-            return {...keyValuePair}
+        const clickedCardArr = flashcards.filter(card => id === card.id);
+        clickedCardArr.map(clickedCard => {
+            return { ...clickedCard }
         });
     }
 
@@ -50,6 +51,7 @@ function App(props) {
             showAnswer={card.showAnswer}
             setAnswer={setAnswer}
             deleteFlashcard={deleteFlashcard}
+            editFlashcard={editFlashcard}
             categories={categoriesList}
         />
     ));
@@ -66,6 +68,19 @@ function App(props) {
             id: `flashcard-${nanoid}`
         }
         setFlashcards([...flashcards, newFlashcard]);
+    }
+
+    function editFlashcard (id) {
+        const editedFlashcards = flashcards.map(flashcard => {
+            if (id === flashcard.id) {
+                return {
+                    ...flashcard,
+                    name: prompt("Type in new Name")
+                }
+            }
+            return flashcard;
+        })
+        setFlashcards(editedFlashcards)
     }
 
     return (
