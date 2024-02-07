@@ -30,6 +30,7 @@ function App(props) {
 
     function deleteFlashcard(id) {
         const remainingFlashcards = flashcards.filter(card => id !== card.id);
+        console.log(remainingFlashcards)
         setFlashcards(remainingFlashcards);
     }
 
@@ -65,8 +66,9 @@ function App(props) {
             name: name,
             text: text,
             answer: answer,
-            id: `flashcard-${nanoid}`
+            id: `flashcard-${nanoid()}`
         }
+        console.log(flashcards)
         setFlashcards([...flashcards, newFlashcard]);
     }
 
@@ -75,7 +77,7 @@ function App(props) {
             if (id === flashcard.id) {
                 return {
                     ...flashcard,
-                    name: prompt("Type in new Name")
+                    text: prompt("Type in new Name")
                 }
             }
             return flashcard;
